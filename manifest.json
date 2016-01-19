@@ -1,0 +1,50 @@
+{
+  "manifest_version": 2,
+
+  "name": "News Humor",
+  "description": "Humerously change words in the news headlines.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+  {
+    "matches": [
+      "*://news.google.com/*",
+      "*://*.wsj.com/*",
+      "*://*.bloomberg.com/*",
+      "*://abcnews.go.com/*",
+      "*://espn.go.com/*",
+      "*://*.nytimes.com/*",
+      "*://*.washingtonpost.com/*",
+      "*://*.huffingtonpost.com/*",
+      "*://*.reuters.com/*",
+      "*://*.foxnews.com/*",
+      "*://*.chicagotribune.com/*",
+      "*://*.pcmag.com/*",
+      "*://*.people.com/*",
+      "*://*.denverpost.com/*",
+      "*://*.time.com/*",
+      "*://*.sltrib.com/*",
+      "*://*.scienceworldreport.com/*",
+      "*://*.nasa.gov/*",
+      "*://*.space.com/*",
+      "*://*.spacex.com/*",
+      "*://*.nasdaq.com/*",
+      "*://*.sfgate.com/*",
+      "*://*.nj.com/*",
+      "*://*.wkyc.com/*",
+      "*://*.discovery.com/*",
+      "*://*.cnn.com/*",
+      "*://*.verdenews.com/*",
+      "*://*.dcourier.com/*"
+    ],
+    "js": ["content.js"]
+  }
+  ]
+}
