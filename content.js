@@ -2,10 +2,57 @@
 //alert("Hello from your Chrome extension!")
 
 var level = 5
+var wantSpace = false
+var wantXKCD = false
+var wantOther = false
+var wantPolitical = false
 
 var replacements = []
+
+
+
+chrome.storage.sync.get("yes_to_xkcd", function(data){
+    populate(data)
+    reformat()
+});
+chrome.storage.sync.get("yes_to_political", function(data){
+    populate(data)
+    reformat()
+});
+chrome.storage.sync.get("yes_to_space", function(data){
+    populate(data)
+    reformat()
+});
+chrome.storage.sync.get("yes_to_other", function(data){
+    populate(data)
+    reformat()
+});
+
+
+function populate(stuffs) {
+
+if (stuffs["yes_to_space"]){
+  console.log("yayayayay!!!SPAAAACE!!!!!")
+  wantSpace = true
+}
+
+if (stuffs["yes_to_xkcd"]){
+  console.log("yayayayay!!!XKCD!!!!")
+  wantXKCD = true
+}
+
+if (stuffs["yes_to_other"]){
+  console.log("yayayayay!!!Other!!!!!")
+  wantOther = true
+}
+
+if (stuffs["yes_to_political"]){
+  console.log("yayayayay!!!Political!!!!!")
+  wantPolitical = true
+}
+
 // XKCD
-  if (level > 1){
+if (level > 1 && wantXKCD){
   replacements.push(
     ["Allegedly", "Kinda Probably"],
     ["allegedly", "kinda probably"],
@@ -52,22 +99,29 @@ var replacements = []
   )
 }
 
+if (wantPolitical){
 replacements.push(
 //Political
   ["Trump", "Duck"],
   ["Hillary Clinton", "Empress Catherine of Russia"],
+  ["Clinton", "Empress Catherine"],
   ["Ted Cruz", "His Mighty Belligerance"],
   ["Bernie Sanders", "Mao Zedong"],
+  ["Sanders", "Zedong"],
   ["John Doe", "Anonymous, Inc"],
   ["Boycott", "Donate To"],
   ["boycott", "donate to"],
   ["Democratic", "Socialist"],
   ["Democrat", "Socialist"],
-  ["democrat", "docialist"],
+  ["democrat", "socialist"],
+  ["Liberal", "Socialist"],
+  ["liberal", "socialist"],
   ["Donat", "Brib"],
   ["donat", "brib"],
   ["Republican", "Redneck"],
   ["republican", "redneck"],
+  ["Conservative", "Redneck"],
+  ["conservative", "redneck"],
   ["Senator", "Knight"],
   ["Sen.", "Knight"],
   ["Governor", "Beaurocrat"],
@@ -75,8 +129,12 @@ replacements.push(
   ["Gov.", "Beaurocrat"],
   ["gov.", "beaurocrat"],
   ["Abortion", "Highway Robbery"],
-  ["abortion", "highway robbery"],
+  ["abortion", "highway robbery"]
+)
+}
 
+if (wantOther){
+  replacements.push(
 //Tech
   ["Windows 10", "Ubuntu 15.4"],
   ["Windows", "DOS"],
@@ -86,8 +144,6 @@ replacements.push(
   ["Stock", "Concert Ticket"],
   ["stock", "concert ticket"],
   ["share", "concert ticket"],
-  ["Oil", "Liquid Hydrogen"],
-  ["oil", "liquid hydrogen"],
 
 //Religious
   ["Evangelical", "Pastafarian"],
@@ -95,14 +151,11 @@ replacements.push(
   ["Christian", "Pastafarian"],
   ["Jesus", "Flying Speghetti Monster"],
   ["God", "FSM"],
+  ["Bible", "Gospel of the Flying Spaghetti Monster"],
 
 //International Affairs
   ["Anthem", "Battle Cry"],
   ["Shooting", "Party That Went Too Far"],
-  ["Navy", "Space Fleet"],
-  ["navy", "space fleet"],
-  ["Sailor","Interstellar Pilot"],
-  ["sailor","interstellar pilot"],
   ["Hurricane", "Giant Sea Monster"],
   ["hurricane", "giant sea monster"],
   ["Olympics", "KSP Tournament"],
@@ -121,20 +174,12 @@ replacements.push(
   ["soldier", "Imperial officer"],
   ["Celebrity", "Butthead"],
   ["celebrity", "butthead"],
-  ["Export", "Shipment"],
-  ["export", "shipment"],
   ["Federal", "Imperial"],
   ["federal", "imperial"], 
   ["Police", "Special Forces"],
   ["police", "special forces"],
 
   //Places
-  ["Britian", "Beetlegeuse 5an"],
-  ["britian", "Beetlegeuse 5an"],
-  ["British", "Beetlegeuse 5ish"],
-  ["british", "Beetlegeuse 5ish"],
-  ["Bridge", "Hyperspace Terminal"],
-  ["bridge", "hyperspace terminal"],
   ["Canada", "Siberia"],
   ["Canadia", "Siberia"],
   ["ISIL", "Whacko terrorists"],
@@ -146,20 +191,8 @@ replacements.push(
   ["Minne", "Hoth"],
   ["Texas", "Redneckland"],
   ["Iowa", "Middle Earth"],
-  ["Iran", "Mars"],
-  ["Iranian", "Martian"],
   ["China", "Han China"],
-  ["US", "Confederated Colonies of the Moon"],
-  ["U.S.", "Confederated Colonies of the Moon"],
-  ["USA", "Confederated Colonies of the Moon"],
-  ["United States", "Confederated Colonies of the Moon and Surrounding Areas"],
-  ["American", "Lunar Colonist"],  
-  ["Ocean", "Space"],
-  ["ocean", "space"],
-  ["Marine", "Interstellar"],
-  ["marine", "interstellar"],
-  ["Harbor", "Spaceport"],
-  ["harbor", "spaceport"],
+  ["Chinese", "Han Chinese"],
   ["Wisconsin", "The Dairy State"],
   
   //Other
@@ -169,64 +202,60 @@ replacements.push(
   ["delete", "nominate for oscar"],
   ["Homeless", "Dirt-Poor"],
   ["homeless", "dirt-poor"],
-  ["Boat", "Spacecraft"],
-  ["boat", "spacecraft"],
-  ["Raft", "Ejection Pod"],
-  ["raft", "ejection pod"],
-  ["Helicopter", "Dragon Capsule"],
-  ["helicopter", "Dragon capsule"],
-  ["Tumblr", "Faller"],
   ["tumblr", "faller"],
   ["Facebook", "Face Book"],
-  ["Twitter", "Little Bird Talk"]
+  ["Twitter", "Little Bird Talk"],
+  ["Tumblr", "Faller"]
 )
-
-
-// re = /\s+|\s+$/g
-// re = new RegExp('\\s+|\\s+$','g') 
-// /media/gi
-
-/*
-function replaceAll(str, find, replace) {
-  var findreg = new RegExp(find, 'g')
-  return str.replace(findreg , replace);
 }
 
-var page = document.body.innerHTML
-for (i=0; i<replacements.length; i++){
-  page = replaceAll(page, replacements[i][0], replacements[i][1])
+
+if (wantSpace){
+  replacements.push(
+    ["Export", "Shipment"],
+    ["export", "shipment"],
+    ["Navy", "Space Fleet"],
+    ["navy", "space fleet"],
+    ["Sailor","Interstellar Pilot"],
+    ["sailor","interstellar pilot"],
+
+    ["Britian", "Beetlegeuse 5an"],
+    ["britian", "Beetlegeuse 5an"],
+    ["British", "Beetlegeuse 5ish"],
+    ["british", "Beetlegeuse 5ish"],
+    ["Bridge", "Hyperspace Terminal"],
+    ["bridge", "hyperspace terminal"],
+    ["Iran", "Mars"],
+    ["Iranian", "Martian"],
+    ["US", "Confederated Colonies of the Moon"],
+    ["U.S.", "Confederated Colonies of the Moon"],
+    ["USA", "Confederated Colonies of the Moon"],
+    ["United States", "Confederated Colonies of the Moon and Surrounding Areas"],
+    ["American", "Lunar Colonist"],  
+    ["Ocean", "Space"],
+    ["ocean", "space"],
+    ["Marine", "Interstellar"],
+    ["marine", "interstellar"],
+    ["Harbor", "Spaceport"],
+    ["harbor", "spaceport"],
+
+    ["Boat", "Spacecraft"],
+    ["boat", "spacecraft"],
+    ["Raft", "Ejection Pod"],
+    ["raft", "ejection pod"],
+    ["Helicopter", "Dragon Capsule"],
+    ["helicopter", "Dragon capsule"],
+    ["Copter", "Capsule"],
+    ["copter", "capsule"],
+    ["Oil", "Liquid Hydrogen"],
+    ["oil", "liquid hydrogen"]
+  )
 }
-document.body.innerHTML = page
-
-
-
-'Two cats are not 1 Cat! They\'re just cool-cats, you caterpillar'
-   .replace(/(^|.\b)(cat)(s?\b.|$)/gi,function(all,char1,cat,char2)
-    {
-       //check 1st, capitalize if required
-       var replacement = (cat.charAt(0) === 'C' ? 'D' : 'd') + 'og';
-       if (char1 === ' ' && char2 === 's')
-       {//replace plurals, too
-           cat = replacement + 's';
-       }
-       else
-       {//do not replace if dashes are matched
-           cat = char1 === '-' || char2 === '-' ? cat : replacement;
-       }
-       return char1 + cat + char2;//return replacement string
-    });
-//returns:
-//Two dogs are not 1 Dog! They're just cool-cats, you caterpillar
-
-*/
+}
 
 
 function replaceAll(str, find, replacey) {
-  //Don't change anything when we find a URL (content=* target=* href=*
-//re = /\s+|\s+$/g
-//re = new RegExp('\\s+|\\s+$','g') 
-re = new RegExp('(^|.\\b)('+find+')(s?\\b.|$)', 'g')
-
+  re = new RegExp('(^|.\\b)('+find+')(s?\\b.|$)', 'g')
   return str
    .replace(re,function(all,char1,cat,char2)
     {
@@ -242,20 +271,20 @@ re = new RegExp('(^|.\\b)('+find+')(s?\\b.|$)', 'g')
        }
        return char1 + cat + char2;//return replacement string
     });
-//returns:
-//Two dogs are not 1 Dog! They're just cool-cats, you caterpillar
-
-  //var findreg = new RegExp(find + "\b", 'g')
-  //return str.replace(findreg , replacey);
 }
 
-var page = document.body.innerHTML
-for (i=0; i<replacements.length; i++){
-  page = replaceAll(page, replacements[i][0], replacements[i][1])
+
+function reformat (){
+  var page = document.body.innerHTML;
+  for (i=0; i<replacements.length; i++){
+    page = replaceAll(page, replacements[i][0], replacements[i][1])
+  }
+  document.body.innerHTML = page
 }
-document.body.innerHTML = page
 
 
+
+//reformat();
 //Legacy stuff below
 //document.body.innerHTML=document.body.innerHTML.replace("/media/gi","<b>pokedex</b>");
 //document.body.innerHTML=document.body.innerHTML.replace(/Debate/gi,"Dance-Off");
