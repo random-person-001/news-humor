@@ -7,7 +7,10 @@ var wantXKCD = false
 var wantOther = false
 var wantPolitical = false
 
-var replacements = []
+var replacements = [
+  ["  oeuaoeu ","oeuoeu   "], 
+  ["  aoeuaou "," eoue  "]
+]
 
 
 
@@ -32,22 +35,22 @@ chrome.storage.sync.get("yes_to_other", function(data){
 function populate(stuffs) {
 
 if (stuffs["yes_to_space"]){
-  console.log("yayayayay!!!SPAAAACE!!!!!")
+  //console.log("yayayayay!!!SPAAAACE!!!!!")
   wantSpace = true
 }
 
 if (stuffs["yes_to_xkcd"]){
-  console.log("yayayayay!!!XKCD!!!!")
+  //console.log("yayayayay!!!XKCD!!!!")
   wantXKCD = true
 }
 
 if (stuffs["yes_to_other"]){
-  console.log("yayayayay!!!Other!!!!!")
+  //console.log("yayayayay!!!Other!!!!!")
   wantOther = true
 }
 
 if (stuffs["yes_to_political"]){
-  console.log("yayayayay!!!Political!!!!!")
+  //console.log("yayayayay!!!Political!!!!!")
   wantPolitical = true
 }
 
@@ -96,7 +99,7 @@ replacements.push(
   ["Self-Driving", "Uncontrollably Swerving"],
   ["self-driving", "uncontrollably swerving"],
   ["vows to", "probably won't"]
-)
+);wantXKCD=false;
 }
 
 if (wantPolitical){
@@ -142,7 +145,7 @@ replacements.push(
   ["quantitive easing", "[some obscure economic concept"],
   ["Polls", "Lottery Drawings"],
   ["polls", "lottery drawings"]
-)
+);wantPolitical=false;
 }
 
 if (wantOther){
@@ -230,8 +233,8 @@ if (wantOther){
   ["juice", "liquid nitrogen"],
   ["Apple", "UNIX"],
   ["Watch", "Holo"],
-  ["watch", "holo"],
-)
+  ["watch", "holo"]
+);wantOther=false;
 }
 
 
@@ -290,7 +293,7 @@ if (wantSpace){
     ["copter", "capsule"],
     ["Oil", "Liquid Hydrogen"],
     ["oil", "liquid hydrogen"]
-  )
+  );wantSpace=false;
 }
 }
 
