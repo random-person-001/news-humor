@@ -53,7 +53,8 @@
       "*://*.discovery.com/*",
       "*://*.cnn.com/*",
       "*://*.verdenews.com/*",
-      "*://*.dcourier.com/*"
+      "*://*.dcourier.com/*",
+      "*://*.mashable.com/*"
     ]
   }
   ]
