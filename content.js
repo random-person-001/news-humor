@@ -18,15 +18,15 @@ chrome.storage.sync.get("yes_to_xkcd", function(data){
     populate(data)
     reformat()
 });
-chrome.storage.sync.get("yes_to_political", function(data){
-    populate(data)
-    reformat()
-});
 chrome.storage.sync.get("yes_to_space", function(data){
     populate(data)
     reformat()
 });
 chrome.storage.sync.get("yes_to_other", function(data){
+    populate(data)
+    reformat()
+});
+chrome.storage.sync.get("yes_to_political", function(data){
     populate(data)
     reformat()
 });
@@ -47,6 +47,7 @@ if (stuffs["yes_to_xkcd"]){
 if (stuffs["yes_to_other"]){
   //console.log("yayayayay!!!Other!!!!!")
   wantOther = true
+  //wantPolitical = true
 }
 
 if (stuffs["yes_to_political"]){
@@ -109,6 +110,7 @@ replacements.push(
   ["Hillary Clinton", "Empress Catherine of Russia"],
   ["Clinton", "Empress Catherine"],
   ["Ted Cruz", "His Mighty Belligerance"],
+  ["Cruz", "His Great Belligerance"],
   ["Bernie Sanders", "Mao Zedong"],
   ["Sanders", "Zedong"],
   ["John Doe", "Anonymous, Inc"],
@@ -320,8 +322,14 @@ function replaceAll(str, find, replacey) {
 
 function reformat (){
   var page = document.body.innerHTML;
-  for (i=0; i<replacements.length; i++){
-    page = replaceAll(page, replacements[i][0], replacements[i][1])
+  try{
+    for (i=0; i<replacements.length; i++){
+      page = replaceAll(page, replacements[i][0], replacements[i][1])
+    }
+  }
+  catch (e){
+    console.log("Uh-oh! ")
+    console.log(e)
   }
   document.body.innerHTML = page
 }

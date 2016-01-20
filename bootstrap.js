@@ -73,16 +73,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
     
     xkcd.addEventListener("change", function(){
-        chrome.storage.sync.set({yes_to_xkcd: space.checked});
+        chrome.storage.sync.set({yes_to_xkcd: xkcd.checked});
     });
     political.addEventListener("change", function(){
-        chrome.storage.sync.set({yes_to_political: space.checked});
+        chrome.storage.sync.set({yes_to_political: political.checked});
     });
     space.addEventListener("change", function(){
         chrome.storage.sync.set({yes_to_space: space.checked});
     });
     other.addEventListener("change", function(){
-        chrome.storage.sync.set({yes_to_other: space.checked});
+        chrome.storage.sync.set({yes_to_other: other.checked});
     });
 
 
