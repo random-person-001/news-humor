@@ -1,7 +1,7 @@
 # news-humor
 
 Inspired by XKCD, I made a chrome extension that makes reading the news a lot more fun!
-Right now there may be some bugs.  Sorry.
 
+It changes the content of news pages to make the world a whole lot more of an interesting place!
 
-But do see the Wiki: https://github.com/random-person-001/news-humor/wiki
+Do see the Wiki, for great screenshots and stuff: https://github.com/random-person-001/news-humor/wiki
