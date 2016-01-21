@@ -7,10 +7,7 @@ var wantXKCD = false
 var wantOther = false
 var wantPolitical = false
 
-var replacements = [
-  ["  oeuaoeu ","oeuoeu   "], 
-  ["  aoeuaou "," eoue  "]
-]
+var replacements = []
 
 
 
@@ -134,7 +131,7 @@ replacements.push(
   ["Gov.", "Beaurocrat"],
   ["gov.", "beaurocrat"],
   ["Abortion", "Highway Robbery"],
-  ["abortion", "highway robbery"]
+  ["abortion", "highway robbery"],
   ["Truth", "Half-Truth"],
   ["truth", "half-truth"],
   ["Gun", "Flamethrower"],
@@ -254,6 +251,7 @@ if (wantSpace){
     ["britian", "Beetlegeuse 5"],
     ["British", "Beetlegeuse 5ish"],
     ["british", "Beetlegeuse 5ish"],
+    ["London", "Beetelgeuse"],
     ["Bridge", "Hyperspace Terminal"],
     ["bridge", "hyperspace terminal"],
     ["EU", "Terrarian Union"],
@@ -322,13 +320,17 @@ function replaceAll(str, find, replacey) {
 
 function reformat (){
   var page = document.body.innerHTML;
+  var i = 0
   try{
-    for (i=0; i<replacements.length; i++){
+    for (; i<replacements.length; i++){
       page = replaceAll(page, replacements[i][0], replacements[i][1])
     }
   }
   catch (e){
-    console.log("Uh-oh! ")
+    console.log("Uh-oh!  Following stuff: index, length of list, list, error")
+    console.log(i)
+    console.log(replacements.length)
+    console.log(replacements)
     console.log(e)
   }
   document.body.innerHTML = page
