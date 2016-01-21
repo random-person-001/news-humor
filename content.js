@@ -1,6 +1,14 @@
 // content.js
 //alert("Hello from your Chrome extension!")
 
+/*NOTES:
+    > I could have a random thingy
+    > just store one chrome.storage array that holds the booleans, rather than seprate ones (probably more proper)
+    > Streamline synking settings here -- integrate addData?
+    > Maybe optimize replaceAll() (want 's)
+    > Slider for intensity of replacements (would probably need another data stored in each sub-array)
+    > ...?
+*/
 var level = 5
 var wantSpace = false
 var wantXKCD = false
@@ -106,13 +114,20 @@ replacements.push(
 if (wantPolitical){
 replacements.push(
 //Political
-  ["Trump", "Duck"],
-  ["Hillary Clinton", "Empress Catherine of Russia"],
-  ["Clinton", "Empress Catherine"],
-  ["Ted Cruz", "His Mighty Belligerance"],
+
+  //Obama : Green Giant?
+  //Jeb Bush : Batman?
+  //Carly Florina : ?
+  //Ben Carson : Superman?
+  ["Trump", "Duck"], // Hulk?
+  ["Hillary Clinton", "Empress Catherine of Russia"], //Wonderwoman?
+  ["Clinton", "Empress Catherine"],  
+  ["Ted Cruz", "His Mighty Belligerance"], // Ironman?
   ["Cruz", "His Great Belligerance"],
-  ["Bernie Sanders", "Mao Zedong"],
+  ["Bernie Sanders", "Mao Zedong"],  //Batman?
   ["Sanders", "Zedong"],
+  ["Sarah Palin", "Alaskan Redneck Leader"], // ?
+  ["Palin", "Alaskan Redneck"],
   ["John Doe", "Anonymous, Inc"],
   ["Boycott", "Donate To"],
   ["boycott", "donate to"],
@@ -214,8 +229,8 @@ if (wantOther){
   ["Minne", "Hoth"],
   ["Texas", "Redneckland"],
   ["Iowa", "Middle Earth"],
-  ["China", "Han China"],
-  ["Chinese", "Han Chinese"],
+//  ["China", "Han China"],
+//  ["Chinese", "Han Chinese"],
   ["Wisconsin", "The Dairy State"],
   
   //Other
@@ -257,8 +272,11 @@ if (wantSpace){
     ["London", "Beetelgeuse"],
     ["Bridge", "Hyperspace Terminal"],
     ["bridge", "hyperspace terminal"],
+    ["China", "Astroid Belt"],
+    ["Chinese", "Beltian"],
     ["EU", "Terrarian Union"],
     ["European", "Terrarian"],
+    ["Earth", "Wasteland of our Fathers"],
     ["Harbor", "Spaceport"],
     ["harbor", "spaceport"],
     ["Iran", "Mars"],
@@ -281,6 +299,8 @@ if (wantSpace){
     ["Brussels", "Interstellar Command"],
     ["United Nations", "Interplanetary Union"],
     ["UN", "Interplanetary Union"],
+    ["Vatican City", "Io"],
+    ["Vatican", "Io"],
 
     ["Bus", "Transport Shuttle"],
     ["bus", "transport shuttle"],
