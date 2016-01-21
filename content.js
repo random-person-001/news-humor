@@ -9,24 +9,27 @@ var wantPolitical = false
 
 var replacements = []
 
-
-
-chrome.storage.sync.get("yes_to_xkcd", function(data){
-    populate(data)
-    reformat()
-});
-chrome.storage.sync.get("yes_to_space", function(data){
-    populate(data)
-    reformat()
-});
-chrome.storage.sync.get("yes_to_other", function(data){
-    populate(data)
-    reformat()
-});
-chrome.storage.sync.get("yes_to_political", function(data){
-    populate(data)
-    reformat()
-});
+try{
+  chrome.storage.sync.get("yes_to_xkcd", function(data){
+      populate(data)
+      //reformat()
+  });
+  chrome.storage.sync.get("yes_to_space", function(data){
+      populate(data)
+      //reformat()
+  });
+  chrome.storage.sync.get("yes_to_other", function(data){
+      populate(data)
+      //reformat()
+  });
+  chrome.storage.sync.get("yes_to_political", function(data){
+      populate(data)
+      //reformat()
+  });
+}
+finally{
+  reformat()
+}
 
 
 function populate(stuffs) {
@@ -327,11 +330,12 @@ function reformat (){
     }
   }
   catch (e){
-    console.log("Uh-oh!  Following stuff: index, length of list, list, error")
+    console.log("Uh-oh!  Following stuff: index it failed at, length of list, list, error, protip")
     console.log(i)
     console.log(replacements.length)
     console.log(replacements)
     console.log(e)
+    console.log("Forgetting commas may be the cause of this error.")
   }
   document.body.innerHTML = page
 }
