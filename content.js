@@ -8,12 +8,11 @@ var wantOther = false
 var wantPolitical = false
 
 var replacements = [
-  ["  oeuaoeu ","oeuoeu   "], 
-  ["  aoeuaou "," eoue  "]
+  ["  oeuaoeu ","oeuoeu   "]
 ]
 
 
-
+/*
 chrome.storage.sync.get("yes_to_xkcd", function(data){
     populate(data)
     reformat()
@@ -30,125 +29,136 @@ chrome.storage.sync.get("yes_to_political", function(data){
     populate(data)
     reformat()
 });
-
+*/
+chrome.storage.sync.get("news_humor_options", function(data){
+    populate(data["news_humor_options"])
+    reformat()
+});
 
 function populate(stuffs) {
 
-if (stuffs["yes_to_space"]){
-  //console.log("yayayayay!!!SPAAAACE!!!!!")
-  wantSpace = true
-}
-
-if (stuffs["yes_to_xkcd"]){
-  //console.log("yayayayay!!!XKCD!!!!")
-  wantXKCD = true
-}
-
-if (stuffs["yes_to_other"]){
-  //console.log("yayayayay!!!Other!!!!!")
-  wantOther = true
-  //wantPolitical = true
-}
-
-if (stuffs["yes_to_political"]){
-  //console.log("yayayayay!!!Political!!!!!")
-  wantPolitical = true
-}
+wantXKCD = stuffs["xkcd"]
+wantSpace = stuffs["space"]
+wantOther = stuffs["other"]
+wantPolitical = stuffs["political"]
+level = stuffs["extent"]
+//console.log(stuffs["xkcd"])
+//console.log(typeof(stuffs["xkcd"]))
 
 // XKCD
-if (level > 1 && wantXKCD){
-replacements.push(
-  ["Allegedly", "Kinda Probably"],
-  ["allegedly", "kinda probably"],
-  ["At Large", "Very Large"],
-  ["at large", "very large"],
-  ["Car", "Cat"],
-  ["car", "cat"],
-  ["Canidate", "Airbender"],
-  ["canidate", "airbender"],
-  ["Cents", "Million Dollars"],
-  ["cents", "million dollars"],
-  ["could not be reached for comment", "is guilty and everyone knows it"],
-  ["Congressional Leaders", "River Spirits"],
-  ["congressional leaders", "river spirits"],
-  ["Debate", "Dance-Off"],
-  ["debate", "dance-off"],
-  ["Drone", "Dog"],
-  ["drone", "dog"],
-  ["Electric", "Fusion-Powered"],
-  ["electric", "fusion-powered"],
-  ["Election", "Eating Contest"],
-  ["election", "eating contest"],
-  ["Grow", "Physically Grow"],
-  ["grow", "physically grow"],
-  ["Keyboard", "Leopard"],
-  ["keyboard", "leopard"],
-  ["New Study", "Tumblr Post"],
-  ["new study", "tumblr post"],
-  ["Space", "Spaaaace"],
-  ["space", "spaaaace"],
-  ["Successful", "Sudden"],
-  ["successful", "sudden"],
-  ["President", "Elf-Lord"],
-  ["president", "Elf-Lord"],
-  ["Presidential", "Elf-Lordly"],
-  ["presidential", "Elf-Lordly"],
-  ["Prime Minister", "Elf-Lord"],
-  ["PM", "EL"],
-  ["Poll", "Psychic Reading"],
-  ["poll", "psychic reading"],
-  ["Self-Driving", "Uncontrollably Swerving"],
-  ["self-driving", "uncontrollably swerving"],
-  ["vows to", "probably won't"]
-);wantXKCD=false;
+if (level >= 5 && wantXKCD){
+  replacements.push(
+    ["Car", "Cat"],
+    ["car", "cat"]
+  )
+}
+if (level >= 2 && wantXKCD){
+  replacements.push(
+    ["Allegedly", "Kinda Probably"],
+    ["allegedly", "kinda probably"],
+    ["At Large", "Very Large"],
+    ["at large", "very large"],
+    ["Canidate", "Airbender"],
+    ["canidate", "airbender"],
+    ["Cents", "Million Dollars"],
+    ["cents", "million dollars"],
+    ["Congressional Leaders", "River Spirits"],
+    ["congressional leaders", "river spirits"],
+    ["Debate", "Dance-Off"],
+    ["debate", "dance-off"],
+    ["Drone", "Dog"],
+    ["drone", "dog"],
+    ["Electric", "Fusion-Powered"],
+    ["electric", "fusion-powered"],
+    ["Election", "Eating Contest"],
+    ["election", "eating contest"],
+    ["Grow", "Physically Grow"],
+    ["grow", "physically grow"],
+    ["Keyboard", "Leopard"],
+    ["keyboard", "leopard"],
+    ["New Study", "Tumblr Post"],
+    ["new study", "tumblr post"],
+    ["Space", "Spaaaace"],
+    ["space", "spaaaace"],
+    ["Successful", "Sudden"],
+    ["successful", "sudden"],
+    ["President", "Elf-Lord"],
+    ["president", "Elf-Lord"],
+    ["Presidential", "Elf-Lordly"],
+    ["presidential", "Elf-Lordly"],
+    ["Prime Minister", "Elf-Lord"],
+    ["PM", "EL"],
+    ["Poll", "Psychic Reading"],
+    ["poll", "psychic reading"],
+    ["Self-Driving", "Uncontrollably Swerving"],
+    ["self-driving", "uncontrollably swerving"],
+    ["vows to", "probably won't"]
+  )
+}
+if (wantXKCD){
+  replacements.push(
+    ["could not be reached for comment", "is guilty and everyone knows it"]
+  )
 }
 
-if (wantPolitical){
-replacements.push(
+
+
 //Political
-  ["Trump", "Duck"],
-  ["Hillary Clinton", "Empress Catherine of Russia"],
-  ["Clinton", "Empress Catherine"],
-  ["Ted Cruz", "His Mighty Belligerance"],
-  ["Cruz", "His Great Belligerance"],
-  ["Bernie Sanders", "Mao Zedong"],
-  ["Sanders", "Zedong"],
-  ["John Doe", "Anonymous, Inc"],
-  ["Boycott", "Donate To"],
-  ["boycott", "donate to"],
-  ["Democratic", "Socialist"],
-  ["Democrat", "Socialist"],
-  ["democrat", "socialist"],
-  ["Liberal", "Socialist"],
-  ["liberal", "socialist"],
-  ["Donat", "Brib"],
-  ["donat", "brib"],
-  ["Republican", "Redneck"],
-  ["republican", "redneck"],
-  ["Conservative", "Redneck"],
-  ["conservative", "redneck"],
-  ["Senator", "Knight"],
-  ["Sen.", "Knight"],
-  ["Governor", "Beaurocrat"],
-  ["governor", "beaurocrat"],
-  ["Gov.", "Beaurocrat"],
-  ["gov.", "beaurocrat"],
-  ["Abortion", "Highway Robbery"],
-  ["abortion", "highway robbery"]
-  ["Truth", "Half-Truth"],
-  ["truth", "half-truth"],
-  ["Gun", "Flamethrower"],
-  ["gun", "flamethrower"],
-  ["Camera", "NSA-Controlled Camera"],
-  ["camera", "NSA-controlled camera"],
-  ["Polarization", "Hippification"],
-  ["polarization", "hippification"],
-  ["Quantitive Easing", "[some obscure economic concept"],
-  ["quantitive easing", "[some obscure economic concept"],
-  ["Polls", "Lottery Drawings"],
-  ["polls", "lottery drawings"]
-);wantPolitical=false;
+if (level >= 4 && wantPolitical){
+  replacements.push(
+    ["Trump", "Duck"],
+    ["Hillary Clinton", "Empress Catherine of Russia"],
+    ["Clinton", "Empress Catherine"],
+    ["Ted Cruz", "His Mighty Belligerance"],
+    ["Cruz", "His Great Belligerance"],
+    ["Bernie Sanders", "Mao Zedong"],
+    ["Sanders", "Zedong"]
+  )
 }
+if (level >= 2 && wantPolitical){
+  replacements.push(
+    ["John Doe", "Anonymous, Inc"],
+    ["Boycott", "Donate To"],
+    ["boycott", "donate to"],
+    ["Democratic", "Socialist"],
+    ["Democrat", "Socialist"],
+    ["democrat", "socialist"],
+    ["Liberal", "Socialist"],
+    ["liberal", "socialist"],
+    ["Donat", "Brib"],
+    ["donat", "brib"],
+    ["Republican", "Redneck"],
+    ["republican", "redneck"],
+    ["Conservative", "Redneck"],
+    ["conservative", "redneck"],
+    ["Senator", "Knight"],
+    ["Sen.", "Knight"],
+    ["Governor", "Beaurocrat"],
+    ["governor", "beaurocrat"],
+    ["Gov.", "Beaurocrat"],
+    ["gov.", "beaurocrat"],
+    ["Abortion", "Highway Robbery"],
+    ["abortion", "highway robbery"]
+    ["Truth", "Half-Truth"],
+    ["truth", "half-truth"],
+    ["Gun", "Flamethrower"],
+    ["gun", "flamethrower"],
+    ["Polls", "Lottery Drawings"],
+    ["polls", "lottery drawings"]
+  )
+}
+if (level >= 1 && wantPolitical){
+  replacements.push(
+    ["Camera", "NSA-Controlled Camera"],
+    ["camera", "NSA-controlled camera"],
+    ["Polarization", "Hippification"],
+    ["polarization", "hippification"],
+    ["Quantitive Easing", "[some obscure economic concept]"],
+    ["quantitive easing", "[some obscure economic concept]"]
+  )
+}
+
+
 
 if (wantOther){
   replacements.push(
@@ -166,6 +176,9 @@ if (wantOther){
   ["Jesus", "Flying Speghetti Monster"],
   ["God", "FSM"],
   ["Bible", "Gospel of the Flying Spaghetti Monster"],
+  ["Islam", "Atheism"],
+  ["Islamic", "Athiest"],
+  ["Muslum", "Athiest"],
 
 //International Affairs
   ["Anthem", "Battle Cry"],
@@ -236,7 +249,7 @@ if (wantOther){
   ["Apple", "UNIX"],
   ["Watch", "Holo"],
   ["watch", "holo"]
-);wantOther=false;
+)
 }
 
 
@@ -295,7 +308,7 @@ if (wantSpace){
     ["copter", "capsule"],
     ["Oil", "Liquid Hydrogen"],
     ["oil", "liquid hydrogen"]
-  );wantSpace=false;
+  )
 }
 }
 
@@ -310,6 +323,12 @@ function replaceAll(str, find, replacey) {
        if (char1 === ' ' && char2 === 's')
        {//replace plurals, too
            cat = replacement + 's';
+       }if (char1 === ' ' && char2 === ':')
+       {//replace colons, too
+           cat = replacement + ':';
+       }if (char1 === ' ' && char2 === '\'')
+       {//replace apostrophies, too
+           cat = replacement + '\'';
        }
        else
        {//do not replace if dashes are matched
@@ -321,6 +340,8 @@ function replaceAll(str, find, replacey) {
 
 
 function reformat (){
+  //console.log("reformatting");
+  //console.log(replacements);
   var page = document.body.innerHTML;
   try{
     for (i=0; i<replacements.length; i++){
