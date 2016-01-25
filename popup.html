@@ -11,7 +11,8 @@
       body {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
-        width: 100px;
+        /*width: 100px;*/
+        width: 165px;
       }
       #status {
         /* avoid an excessively wide status text */
@@ -33,14 +34,16 @@
     
   </head>
   <body>
-    <h4>News Humor Options</h4><div>
-    <input type="checkbox"  id="yes-xkcd" name="yes-xkcd" /> <span style="position:relative; top:3px;"> XKCD</span>
+    <h4>News Humor Options</h4> 
+    <div><center><input type="range"  min="1" max="5" id="extent" name="extent" /><span style="position:relative; top:0px;"></span></center>
+    </div><div>
+    <input type="checkbox"  id="yes-xkcd" name="yes-xkcd" /> <span style="position:relative; top:0px;"> XKCD</span>
     </div><div>    
-    <input type="checkbox"  id="yes-political" name="yes-political" /> <span style="position:relative; top:3px;"> Political</span>
+    <input type="checkbox"  id="yes-political" name="yes-political" /> <span style="position:relative; top:0px;"> Political</span>
     </div><div>
-    <input type="checkbox"  id="yes-space" name="yes-space" /> <span style="position:relative; top:3px;"> Space</span>
+    <input type="checkbox"  id="yes-space" name="yes-space" /> <span style="position:relative; top:0px;"> Space</span>
     </div><div>
-    <input type="checkbox"  id="yes-other" name="yes-other" /> <span style="position:relative; top:3px;"> Other</span>
+    <input type="checkbox"  id="yes-other" name="yes-other" /> <span style="position:relative; top:0px;"> Other</span>
     </div>
     <script src="popup.js"></script>
   </body>
