@@ -1,6 +1,14 @@
 // content.js
 //alert("Hello from your Chrome extension!")
 
+/*NOTES:
+    > I could have a random thingy
+    > just store one chrome.storage array that holds the booleans, rather than seprate ones (probably more proper)
+    > Streamline synking settings here -- integrate addData?
+    > Maybe optimize replaceAll() (want 's)
+    > Slider for intensity of replacements (would probably need another data stored in each sub-array)
+    > ...?
+*/
 var level = 5
 var wantSpace = false
 var wantXKCD = false
@@ -10,7 +18,6 @@ var wantPolitical = false
 var replacements = [
   ["  oeuaoeu ","oeuoeu   "]
 ]
-
 
 /*
 chrome.storage.sync.get("yes_to_xkcd", function(data){
@@ -34,6 +41,8 @@ chrome.storage.sync.get("news_humor_options", function(data){
     populate(data["news_humor_options"])
     reformat()
 });
+
+
 
 function populate(stuffs) {
 
@@ -105,14 +114,20 @@ if (wantXKCD){
 
 //Political
 if (level >= 4 && wantPolitical){
-  replacements.push(
-    ["Trump", "Duck"],
-    ["Hillary Clinton", "Empress Catherine of Russia"],
-    ["Clinton", "Empress Catherine"],
-    ["Ted Cruz", "His Mighty Belligerance"],
+  replacements.push(//Obama : Green Giant?
+    //Jeb Bush : Batman?
+    //Carly Florina : ?
+    //Ben Carson : Superman?
+    ["Trump", "Duck"], // Hulk?
+    ["Hillary Clinton", "Empress Catherine of Russia"], //Wonderwoman?
+    ["Clinton", "Empress Catherine"],  
+    ["Ted Cruz", "His Mighty Belligerance"], // Ironman?
     ["Cruz", "His Great Belligerance"],
-    ["Bernie Sanders", "Mao Zedong"],
-    ["Sanders", "Zedong"]
+    ["Bernie Sanders", "Mao Zedong"],  //Batman?
+    ["Sanders", "Zedong"],
+    ["Sarah Palin", "Alaskan Redneck Leader"], // ?
+    ["Palin", "Alaskan Redneck"],
+    ["John Doe", "Anonymous, Inc"]
   )
 }
 if (level >= 2 && wantPolitical){
@@ -138,7 +153,7 @@ if (level >= 2 && wantPolitical){
     ["Gov.", "Beaurocrat"],
     ["gov.", "beaurocrat"],
     ["Abortion", "Highway Robbery"],
-    ["abortion", "highway robbery"]
+    ["abortion", "highway robbery"],
     ["Truth", "Half-Truth"],
     ["truth", "half-truth"],
     ["Gun", "Flamethrower"],
@@ -227,8 +242,8 @@ if (wantOther){
   ["Minne", "Hoth"],
   ["Texas", "Redneckland"],
   ["Iowa", "Middle Earth"],
-  ["China", "Han China"],
-  ["Chinese", "Han Chinese"],
+//  ["China", "Han China"],
+//  ["Chinese", "Han Chinese"],
   ["Wisconsin", "The Dairy State"],
   
   //Other
@@ -267,10 +282,14 @@ if (wantSpace){
     ["britian", "Beetlegeuse 5"],
     ["British", "Beetlegeuse 5ish"],
     ["british", "Beetlegeuse 5ish"],
+    ["London", "Beetelgeuse"],
     ["Bridge", "Hyperspace Terminal"],
     ["bridge", "hyperspace terminal"],
+    ["China", "Astroid Belt"],
+    ["Chinese", "Beltian"],
     ["EU", "Terrarian Union"],
     ["European", "Terrarian"],
+    ["Earth", "Wasteland of our Fathers"],
     ["Harbor", "Spaceport"],
     ["harbor", "spaceport"],
     ["Iran", "Mars"],
@@ -293,6 +312,8 @@ if (wantSpace){
     ["Brussels", "Interstellar Command"],
     ["United Nations", "Interplanetary Union"],
     ["UN", "Interplanetary Union"],
+    ["Vatican City", "Io"],
+    ["Vatican", "Io"],
 
     ["Bus", "Transport Shuttle"],
     ["bus", "transport shuttle"],
@@ -343,14 +364,19 @@ function reformat (){
   //console.log("reformatting");
   //console.log(replacements);
   var page = document.body.innerHTML;
+  var i = 0
   try{
-    for (i=0; i<replacements.length; i++){
+    for (; i<replacements.length; i++){
       page = replaceAll(page, replacements[i][0], replacements[i][1])
     }
   }
   catch (e){
-    console.log("Uh-oh! ")
+    console.log("Uh-oh!  Following stuff: index it failed at, length of list, list, error, protip")
+    console.log(i)
+    console.log(replacements.length)
+    console.log(replacements)
     console.log(e)
+    console.log("Forgetting commas may be the cause of this error.")
   }
   document.body.innerHTML = page
 }
