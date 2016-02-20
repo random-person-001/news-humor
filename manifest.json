@@ -2,8 +2,9 @@
   "manifest_version": 2,
 
   "name": "News Humor",
-  "description": "Humerously change words in the news headlines.",
-  "version": "1.5",
+  "short_name": "News Humor",
+  "description": "Humerously swap words in the news headlines and stories.",
+  "version": "1.6",
 
   "browser_action": {
     "default_icon": "news-icon.png",
@@ -54,7 +55,8 @@
       "*://*.cnn.com/*",
       "*://*.verdenews.com/*",
       "*://*.dcourier.com/*",
-      "*://*.mashable.com/*"
+      "*://*.mashable.com/*",
+      "*://*.macrumors.com/*"
     ]
   }
   ]

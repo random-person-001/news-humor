@@ -3,11 +3,16 @@
 
 /*NOTES:
     > I could have a random thingy
-    > just store one chrome.storage array that holds the booleans, rather than seprate ones (probably more proper)
+    ./ just store one chrome.storage array that holds the booleans, rather than seprate ones (probably more proper)
     > Streamline synking settings here -- integrate addData?
-    > Maybe optimize replaceAll() (want 's)
-    > Slider for intensity of replacements (would probably need another data stored in each sub-array)
+    ./ Maybe optimize replaceAll() (want 's)
+    ./ Slider for intensity of replacements (would probably need another data stored in each sub-array)
     > ...?
+
+Treasury
+FBI
+Budget
+
 */
 var level = 5
 var wantSpace = false
@@ -118,6 +123,8 @@ if (level >= 4 && wantPolitical){
     //Jeb Bush : Batman?
     //Carly Florina : ?
     //Ben Carson : Superman?
+    ["Barack Obama", "Arnold Schwarzenegger"],
+    ["Obama", "Schwarzenegger"],
     ["Trump", "Duck"], // Hulk?
     ["Hillary Clinton", "Empress Catherine of Russia"], //Wonderwoman?
     ["Clinton", "Empress Catherine"],  
@@ -174,6 +181,81 @@ if (level >= 1 && wantPolitical){
 }
 
 
+if (wantSpace){
+  replacements.push(
+    ["Export", "Shipment"],
+    ["export", "shipment"],
+    ["Navy", "Space Fleet"],
+    ["navy", "space fleet"],
+    ["Sailor","Interstellar Pilot"],
+    ["sailor","interstellar pilot"],
+
+    ["Bejing", "ISL"],
+    ["Britain", "Beetlegeuse 5"],
+    ["britain", "Beetlegeuse 5"],
+    ["British", "Beetlegeuse 5"],
+    ["british", "Beetlegeuse 5"],
+    ["Britons", "Beetlegeese"],
+    ["Briton",  "Beetlegoose"],
+    ["britons", "beetlegeese"],
+    ["briton",  "beetlegoose"],
+    ["London", "Beetelgeuse"],
+    ["Bridge", "Hyperspace Terminal"],
+    ["bridge", "hyperspace terminal"],
+    ["China", "Astroid Belt"],
+    ["Chinese", "Beltian"],
+    ["EU", "Terrarian Union"],
+    ["European", "Terrarian"],
+    ["Earth", "Wasteland of our Fathers"],
+    ["Harbor", "Spaceport"],
+    ["harbor", "spaceport"],
+    ["Iran", "Mars"],
+    ["Iranian", "Martian"],
+    ["Iraq", "Mercury"],
+    ["Iraqi", "Mercurial"],
+    ["Afghanistan", "Venus"],
+    ["Afghanistani", "Venusian"],
+    ["US", "Confederated Colonies of the Moon"],
+    ["U.S.", "Confederated Colonies of the Moon"],
+    ["USA", "Confederated Colonies of the Moon"],
+    ["United States", "Confederated Colonies of the Moon and Surrounding Areas"],
+    ["American", "Lunar Colonist"],  
+    ["Ocean", "Space"],
+    ["ocean", "space"],
+    ["Marine", "Interstellar"],
+    ["marine", "interstellar"],
+    ["Russia", "Jovian Moon Economic Zone"],
+    ["Russian", "Jovian"],
+    ["SF", "ISL"],
+    ["San Fransisco", "ISL"],
+    ["Washington DC", "Interstellar Command"],
+    ["DC", "Interstellar Command"],
+    ["Brussels", "Interstellar Command"],
+    ["United Nations", "Interplanetary Union"],
+    ["UN", "Interplanetary Union"],
+    ["Vatican City", "Io"],
+    ["Vatican", "Io"],
+
+    ["Bus", "Transport Shuttle"],
+    ["bus", "transport shuttle"],
+    ["Ferry", "Transport Shuttle"],
+    ["ferry", "transport shuttle"],
+    ["Boat", "Spacecraft"],
+    ["boat", "spacecraft"],
+    ["Raft", "Ejection Pod"],
+    ["raft", "ejection pod"],
+    ["Helicopter", "Dragon Capsule"],
+    ["helicopter", "Dragon capsule"],
+    ["Copter", "Capsule"],
+    ["copter", "capsule"],
+    ["Gas", "Hydrogen"],
+    ["gas", "hydrogen"],
+    ["Oil", "Liquid Hydrogen"],
+    ["oil", "liquid hydrogen"]
+  )
+}
+
+
 
 if (wantOther){
   replacements.push(
@@ -182,7 +264,7 @@ if (wantOther){
   ["Windows", "DOS"],
   ["Microsoft", "Developers"],
   ["PC", "Raspberry Pi"],
-  ["Minecraft", "GTA 4"],
+  ["Minecraft", "GTA 5"],
 
 //Religious
   ["Evangelical", "Pastafarian"],
@@ -216,6 +298,7 @@ if (wantOther){
   ["soldier", "Imperial officer"],
   ["Celebrity", "Butthead"],
   ["celebrity", "butthead"],
+  ["Fed", "Imperial Bank"],
   ["Federal", "Imperial"],
   ["federal", "imperial"], 
   ["Police", "Special Forces"],
@@ -266,71 +349,6 @@ if (wantOther){
   ["watch", "holo"]
 )
 }
-
-
-if (wantSpace){
-  replacements.push(
-    ["Export", "Shipment"],
-    ["export", "shipment"],
-    ["Navy", "Space Fleet"],
-    ["navy", "space fleet"],
-    ["Sailor","Interstellar Pilot"],
-    ["sailor","interstellar pilot"],
-
-    ["Bejing", "ISL"],
-    ["Britian", "Beetlegeuse 5"],
-    ["britian", "Beetlegeuse 5"],
-    ["British", "Beetlegeuse 5ish"],
-    ["british", "Beetlegeuse 5ish"],
-    ["London", "Beetelgeuse"],
-    ["Bridge", "Hyperspace Terminal"],
-    ["bridge", "hyperspace terminal"],
-    ["China", "Astroid Belt"],
-    ["Chinese", "Beltian"],
-    ["EU", "Terrarian Union"],
-    ["European", "Terrarian"],
-    ["Earth", "Wasteland of our Fathers"],
-    ["Harbor", "Spaceport"],
-    ["harbor", "spaceport"],
-    ["Iran", "Mars"],
-    ["Iranian", "Martian"],
-    ["US", "Confederated Colonies of the Moon"],
-    ["U.S.", "Confederated Colonies of the Moon"],
-    ["USA", "Confederated Colonies of the Moon"],
-    ["United States", "Confederated Colonies of the Moon and Surrounding Areas"],
-    ["American", "Lunar Colonist"],  
-    ["Ocean", "Space"],
-    ["ocean", "space"],
-    ["Marine", "Interstellar"],
-    ["marine", "interstellar"],
-    ["Russia", "Jovian Moon Economic Zone"],
-    ["Russian", "Jovian"],
-    ["SF", "ISL"],
-    ["San Fransisco", "ISL"],
-    ["Washington DC", "Interstellar Command"],
-    ["DC", "Interstellar Command"],
-    ["Brussels", "Interstellar Command"],
-    ["United Nations", "Interplanetary Union"],
-    ["UN", "Interplanetary Union"],
-    ["Vatican City", "Io"],
-    ["Vatican", "Io"],
-
-    ["Bus", "Transport Shuttle"],
-    ["bus", "transport shuttle"],
-    ["Ferry", "Transport Shuttle"],
-    ["ferry", "transport shuttle"],
-    ["Boat", "Spacecraft"],
-    ["boat", "spacecraft"],
-    ["Raft", "Ejection Pod"],
-    ["raft", "ejection pod"],
-    ["Helicopter", "Dragon Capsule"],
-    ["helicopter", "Dragon capsule"],
-    ["Copter", "Capsule"],
-    ["copter", "capsule"],
-    ["Oil", "Liquid Hydrogen"],
-    ["oil", "liquid hydrogen"]
-  )
-}
 }
 
 
@@ -347,9 +365,6 @@ function replaceAll(str, find, replacey) {
        }if (char1 === ' ' && char2 === ':')
        {//replace colons, too
            cat = replacement + ':';
-       }if (char1 === ' ' && char2 === '\'')
-       {//replace apostrophies, too
-           cat = replacement + '\'';
        }
        else
        {//do not replace if dashes are matched
