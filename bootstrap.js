@@ -1,6 +1,5 @@
 // when the extension is first installed
 chrome.runtime.onInstalled.addListener(function(details) {
-    //chrome.storage.sync.set({be_a_buzzkill: true});
     defaults = {};
     defaults['xkcd'] = true;
     defaults['political'] = true;

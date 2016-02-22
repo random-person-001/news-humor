@@ -21,10 +21,11 @@ var wantOther = false
 var wantPolitical = false
 
 var replacements = [
-  ["  oeuaoeu ","oeuoeu   "]
+  ["  Probably Erronious Placeholder ","  ... "]
 ]
 
-/*
+/* I put them all under one storage thing, with the different
+preferences as different keys in that dict.
 chrome.storage.sync.get("yes_to_xkcd", function(data){
     populate(data)
     reformat()
@@ -106,7 +107,11 @@ if (level >= 2 && wantXKCD){
     ["poll", "psychic reading"],
     ["Self-Driving", "Uncontrollably Swerving"],
     ["self-driving", "uncontrollably swerving"],
-    ["vows to", "probably won't"]
+    ["vows to", "probably won't"], 
+    ["Facebook", "Face Book"],
+    ["Twitter", "Little Bird Talk"],
+    ["Tumblr", "Faller"],
+    ["tumblr", "faller"]
   )
 }
 if (wantXKCD){
@@ -119,8 +124,8 @@ if (wantXKCD){
 
 //Political
 if (level >= 4 && wantPolitical){
-  replacements.push(//Obama : Green Giant?
-    //Jeb Bush : Batman?
+  replacements.push(//Obama : Green Giant?  <-- Swartzinagger or whatever
+    //Jeb Bush : Batman?  <-- Dropped out of race
     //Carly Florina : ?
     //Ben Carson : Superman?
     ["Barack Obama", "Arnold Schwarzenegger"],
@@ -129,7 +134,7 @@ if (level >= 4 && wantPolitical){
     ["Hillary Clinton", "Empress Catherine of Russia"], //Wonderwoman?
     ["Clinton", "Empress Catherine"],  
     ["Ted Cruz", "His Mighty Belligerance"], // Ironman?
-    ["Cruz", "His Great Belligerance"],
+    ["Cruz", "His Great Belligerance"],   // Shows up surprisingly often
     ["Bernie Sanders", "Mao Zedong"],  //Batman?
     ["Sanders", "Zedong"],
     ["Sarah Palin", "Alaskan Redneck Leader"], // ?
@@ -191,6 +196,8 @@ if (wantSpace){
     ["sailor","interstellar pilot"],
 
     ["Bejing", "ISL"],
+    ["UK", "BG5"],
+    ["United Kingdom", "Beetlegeuse 5"],
     ["Britain", "Beetlegeuse 5"],
     ["britain", "Beetlegeuse 5"],
     ["British", "Beetlegeuse 5"],
@@ -200,15 +207,12 @@ if (wantSpace){
     ["britons", "beetlegeese"],
     ["briton",  "beetlegoose"],
     ["London", "Beetelgeuse"],
-    ["Bridge", "Hyperspace Terminal"],
-    ["bridge", "hyperspace terminal"],
     ["China", "Astroid Belt"],
     ["Chinese", "Beltian"],
+    ["E.U.", "Terrarian Union"],
     ["EU", "Terrarian Union"],
     ["European", "Terrarian"],
     ["Earth", "Wasteland of our Fathers"],
-    ["Harbor", "Spaceport"],
-    ["harbor", "spaceport"],
     ["Iran", "Mars"],
     ["Iranian", "Martian"],
     ["Iraq", "Mercury"],
@@ -219,11 +223,7 @@ if (wantSpace){
     ["U.S.", "Confederated Colonies of the Moon"],
     ["USA", "Confederated Colonies of the Moon"],
     ["United States", "Confederated Colonies of the Moon and Surrounding Areas"],
-    ["American", "Lunar Colonist"],  
-    ["Ocean", "Space"],
-    ["ocean", "space"],
-    ["Marine", "Interstellar"],
-    ["marine", "interstellar"],
+    ["American", "Lunar Colonist"],
     ["Russia", "Jovian Moon Economic Zone"],
     ["Russian", "Jovian"],
     ["SF", "ISL"],
@@ -238,20 +238,37 @@ if (wantSpace){
 
     ["Bus", "Transport Shuttle"],
     ["bus", "transport shuttle"],
-    ["Ferry", "Transport Shuttle"],
-    ["ferry", "transport shuttle"],
     ["Boat", "Spacecraft"],
     ["boat", "spacecraft"],
-    ["Raft", "Ejection Pod"],
-    ["raft", "ejection pod"],
-    ["Helicopter", "Dragon Capsule"],
-    ["helicopter", "Dragon capsule"],
+    ["Bridge", "Hyperspace Terminal"],
+    ["bridge", "hyperspace terminal"],
     ["Copter", "Capsule"],
     ["copter", "capsule"],
+    ["Ferry", "Transport Shuttle"],
+    ["ferry", "transport shuttle"],
     ["Gas", "Hydrogen"],
-    ["gas", "hydrogen"],
+    ["gas", "hydrogen"],  
+    ["Harbor", "Spaceport"],
+    ["harbor", "spaceport"],
+    ["Island", "Asteroid"],
+    ["island", "asteroid"],
+    ["Raft", "Ejection Pod"],
+    ["raft", "ejection pod"],
+    ["Sea", "Zone"],
+    ["sea", "zone"],
+    ["Helicopter", "Dragon Capsule"],
+    ["helicopter", "Dragon capsule"],
+    ["Marine", "Interstellar"],
+    ["marine", "interstellar"],
+    ["Ocean", "Space"],
+    ["ocean", "space"],
     ["Oil", "Liquid Hydrogen"],
-    ["oil", "liquid hydrogen"]
+    ["oil", "liquid hydrogen"],
+    
+    ["Sailed", "Flew"],
+    ["sailed", "flew"],
+    ["Sail", "Fly"],
+    ["sail", "fly"]
   )
 }
 
@@ -265,17 +282,6 @@ if (wantOther){
   ["Microsoft", "Developers"],
   ["PC", "Raspberry Pi"],
   ["Minecraft", "GTA 5"],
-
-//Religious
-  ["Evangelical", "Pastafarian"],
-  ["evangelical", "Pastafarian"],
-  ["Christian", "Pastafarian"],
-  ["Jesus", "Flying Speghetti Monster"],
-  ["God", "FSM"],
-  ["Bible", "Gospel of the Flying Spaghetti Monster"],
-  ["Islam", "Atheism"],
-  ["Islamic", "Athiest"],
-  ["Muslum", "Athiest"],
 
 //International Affairs
   ["Anthem", "Battle Cry"],
@@ -314,6 +320,7 @@ if (wantOther){
   ["Chinese", "Indian"],
   ["ISIL", "Whacko terrorists"],
   ["ISIS", "Whacko terrorists"],
+  ["I.S. ", "Whacko terrorists "],
   ["IS ", "Whacko terrorists "],
   ["India", "Atlantis"],
   ["india", "Atlantis"],
@@ -322,13 +329,25 @@ if (wantOther){
   ["Michigan", "Hoth"],
   ["Mich.", "Hoth"],
   ["Minnesota", "Hoth"],
-  ["Minne", "Hoth"],
+  ["Minn.", "Hoth"],
   ["Texas", "Redneckland"],
   ["Iowa", "Middle Earth"],
-//  ["China", "Han China"],
-//  ["Chinese", "Han Chinese"],
   ["Wisconsin", "The Dairy State"],
+  ["Wisc.", "The Dairy State"],
   
+  //Religious
+  ["Evangelical", "Pastafarian"],
+  ["evangelical", "Pastafarian"],
+  ["Christian", "Pastafarian"],
+  ["Jesus Christ", "Almighty Flying Speghetti Monster"],
+  ["Christ", "Flying Speghetti Monster"],
+  ["Jesus", "Flying Speghetti Monster"],
+  ["God", "FSM"],
+  ["Bible", "Gospel of the Flying Spaghetti Monster"],
+  ["Islam", "Atheism"],
+  ["Islamic", "Athiest"],
+  ["Muslim", "Athiest"],
+
   //Other
   ["Chicken", "Dinosaur"],
   ["chicken", "dinosaur"],
@@ -336,10 +355,6 @@ if (wantOther){
   ["delete", "nominate for oscar"],
   ["Homeless", "Dirt-Poor"],
   ["homeless", "dirt-poor"],
-  ["tumblr", "faller"],
-  ["Facebook", "Face Book"],
-  ["Twitter", "Little Bird Talk"],
-  ["Tumblr", "Faller"],
   ["Milk", "Soylent"],
   ["milk", "Soylent"],
   ["Juice", "Liquid Nitrogen"],
@@ -386,7 +401,7 @@ function reformat (){
     }
   }
   catch (e){
-    console.log("Uh-oh!  Following stuff: index it failed at, length of list, list, error, protip")
+    console.log("Uh-oh, speghetti-o!  Following stuff is: index failure was at, length of list, list, error, protip")
     console.log(i)
     console.log(replacements.length)
     console.log(replacements)

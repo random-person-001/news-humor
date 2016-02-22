@@ -1,5 +1,5 @@
 # news-humor
-## Lighten your day with comical news
+### Lighten your day with comical news
 
 Inspired by XKCD, I made a chrome extension that makes reading the news a lot more fun!
 

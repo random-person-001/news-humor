@@ -4,7 +4,7 @@
   "name": "News Humor",
   "short_name": "News Humor",
   "description": "Humerously swap words in the news headlines and stories.",
-  "version": "1.61",
+  "version": "1.63",
 
   "browser_action": {
     "default_icon": "news-icon.png",
@@ -32,6 +32,7 @@
       "*://*.bloomberg.com/*",
       "*://abcnews.go.com/*",
       "*://espn.go.com/*",
+      "*://news.nationalpost.com/*",
       "*://*.nytimes.com/*",
       "*://*.washingtonpost.com/*",
       "*://*.huffingtonpost.com/*",
@@ -56,7 +57,15 @@
       "*://*.verdenews.com/*",
       "*://*.dcourier.com/*",
       "*://*.mashable.com/*",
-      "*://*.macrumors.com/*"
+      "*://*.macrumors.com/*",
+      "*://*.postbulletin.com/*",
+      "*://*.newsweek.com/*",
+      "*://*.usatoday.com/*",
+      "*://*.appleinsider.com/*",
+      "*://*.seattlepi.com/*",
+      "*://*.csmonitor.com/*",
+      "*://*.miamiherald.com/*",
+      "*://*.latimes.com/*"
     ]
   }
   ]
