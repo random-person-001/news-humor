@@ -22,6 +22,12 @@ wheat, etc - soybeans
 ./ two, four - 42
 ./ kremlin - gremlin
  ?  - sugar cookie
+Rubio > Bro
+Foxconn > Foxes
+
+Price  > Gouge
+Apple  > Bananna
+Europe > Europa
 
 
 THINGS NOT WORKING:
@@ -41,6 +47,7 @@ var wantSpace = false
 var wantXKCD = false
 var wantOther = false
 var wantPolitical = false
+var wantGrammar = false
 console.log("Content.js running")
 
 var replacements = [
@@ -66,6 +73,7 @@ function populate(stuffs) {
 wantXKCD = stuffs["xkcd"]
 wantSpace = stuffs["space"]
 wantOther = stuffs["other"]
+wantGrammar = stuffs["grammar"]
 wantPolitical = stuffs["political"]
 level = stuffs["extent"]
 //console.log(stuffs["xkcd"])
@@ -307,6 +315,8 @@ if (wantOther){
   ["Minecraft", "GTA 5"],
 
 //International Affairs
+  ["Battle", "Lightsaber® Duel"],
+  ["battle", "Lightsaber® duel"],
   ["Anthem", "Battle Cry"],
   ["Shooting", "Party That Went Too Far"],
   ["Hurricane", "Giant Sea Monster"],
@@ -390,6 +400,11 @@ if (wantOther){
   ["Juice", "Liquid Nitrogen"],
   ["juice", "liquid nitrogen"],
   ["Apple", "UNIX"],
+  ["OSX", "DirectX"],
+  ["OS X", "DirectX"],
+  ["iOS", "Solaris"],
+  ["iPod", "youPod"],
+  ["iPhone", "youPhone"],
   ["Watch", "Holo"],
   ["watch", "holo"],
 
@@ -400,6 +415,30 @@ if (wantOther){
   ["Four", "Fourty-Two"],
   ["four", "fourty-two"]
 )
+}
+if (level >= 2 && wantGrammar){
+  replacements.push(
+    ["or", "xor"],
+    ["and", "but not"],
+    ["if", "iff"],
+    ["against", "TEMPYYY"],
+    ["for", "against"],
+    ["TEMPYYY", "for"],
+    ["outside", "within"],
+    ["in", "outside of"],
+    ["after", "TEMPYYY"],
+    ["before", "after"],
+    ["TEMPYYY", "before"],
+    ["with", "TEMPYYY"],
+    ["without", "with"],
+    ["TEMPYYY", "without"],
+    ["new", "TEMPYYY"],
+    ["old", "new"],
+    ["TEMPYYY", "old"],
+    ["will", "TEMPYYY"],
+    ["won't", "will"],
+    ["TEMPYYY", "won't"]
+  )
 }
 }
 
