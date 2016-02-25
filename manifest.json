@@ -3,12 +3,12 @@
 
   "name": "News Humor",
   "short_name": "News Humor",
-  "description": "Humerously swap words in the news headlines and stories.",
-  "version": "1.63",
+  "description": "Humorously swap words in the news headlines and stories.",
+  "version": "1.7.0",
 
   "browser_action": {
     "default_icon": "news-icon.png",
-    "default_popup": "popup.html",
+    "default_popup": "popup-2.html",
     "default_title": "News Humor"
   },
 
@@ -18,6 +18,11 @@
     "storage"
   ],
 
+  "icons": { 
+    "32": "icon-32.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png" },
+
   "background": {
     "scripts": ["bootstrap.js"],
     "persistent": false
@@ -26,47 +31,7 @@
   "content_scripts": [
   {
     "js": ["content.js"],
-    "matches": [
-      "*://news.google.com/*",
-      "*://*.wsj.com/*",
-      "*://*.bloomberg.com/*",
-      "*://abcnews.go.com/*",
-      "*://espn.go.com/*",
-      "*://news.nationalpost.com/*",
-      "*://*.nytimes.com/*",
-      "*://*.washingtonpost.com/*",
-      "*://*.huffingtonpost.com/*",
-      "*://*.reuters.com/*",
-      "*://*.foxnews.com/*",
-      "*://*.chicagotribune.com/*",
-      "*://*.pcmag.com/*",
-      "*://*.people.com/*",
-      "*://*.denverpost.com/*",
-      "*://*.time.com/*",
-      "*://*.sltrib.com/*",
-      "*://*.scienceworldreport.com/*",
-      "*://*.nasa.gov/*",
-      "*://*.space.com/*",
-      "*://*.spacex.com/*",
-      "*://*.nasdaq.com/*",
-      "*://*.sfgate.com/*",
-      "*://*.nj.com/*",
-      "*://*.wkyc.com/*",
-      "*://*.discovery.com/*",
-      "*://*.cnn.com/*",
-      "*://*.verdenews.com/*",
-      "*://*.dcourier.com/*",
-      "*://*.mashable.com/*",
-      "*://*.macrumors.com/*",
-      "*://*.postbulletin.com/*",
-      "*://*.newsweek.com/*",
-      "*://*.usatoday.com/*",
-      "*://*.appleinsider.com/*",
-      "*://*.seattlepi.com/*",
-      "*://*.csmonitor.com/*",
-      "*://*.miamiherald.com/*",
-      "*://*.latimes.com/*"
-    ]
+    "matches": ["*://*/*"]
   }
   ]
 }
