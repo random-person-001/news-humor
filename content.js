@@ -9,43 +9,54 @@
     ./ Slider for intensity of replacements (would probably need another data stored in each sub-array)
     > ...?
 
-Treasury
-FBI
-Budget
+Now Things:
+./ Treasury - Gold Hoard
+FBI      - 
+Budget   - 
+./ GOP   - Grumpy Old People
+./ Internet - Pony Express
+./ Gold     - Unicorn Blood
+common nouns -> potion ingredients
+corn     - veggemite
+wheat, etc - soybeans
+./ two, four - 42
+./ kremlin - gremlin
+ ?  - sugar cookie
 
+
+THINGS NOT WORKING:
+Sen. - Knight
+Gov. - Beaurocrat
+E.U. - Terrarian Union
+U.S. - Confederated Colonies of the Moon
+I.S. - Whacko terrorists
+Mich.- Hoth
+Minn.- Hoth
+Wisc.- The Dairy State
+
+(all things ending in a period)
 */
 var level = 5
 var wantSpace = false
 var wantXKCD = false
 var wantOther = false
 var wantPolitical = false
+console.log("Content.js running")
 
 var replacements = [
   ["  Probably Erronious Placeholder ","  ... "]
 ]
 
-/* I put them all under one storage thing, with the different
-preferences as different keys in that dict.
-chrome.storage.sync.get("yes_to_xkcd", function(data){
-    populate(data)
-    reformat()
-});
-chrome.storage.sync.get("yes_to_space", function(data){
-    populate(data)
-    reformat()
-});
-chrome.storage.sync.get("yes_to_other", function(data){
-    populate(data)
-    reformat()
-});
-chrome.storage.sync.get("yes_to_political", function(data){
-    populate(data)
-    reformat()
-});
-*/
+//  Mainish
 chrome.storage.sync.get("news_humor_options", function(data){
-    populate(data["news_humor_options"])
-    reformat()
+    if (data["news_humor_options"]["changeThisSite"]){
+        console.log("Yay, it's a fun site!")
+        populate(data["news_humor_options"])
+        reformat()
+    }
+    else{
+        console.log("This site isn't one I should replace")
+    }
 });
 
 
@@ -85,10 +96,12 @@ if (level >= 2 && wantXKCD){
     ["drone", "dog"],
     ["Electric", "Fusion-Powered"],
     ["electric", "fusion-powered"],
-    ["Election", "Eating Contest"],
-    ["election", "eating contest"],
+    ["Election", "Hot Dog Eating Contest"],
+    ["election", "hot dog eating contest"],
     ["Grow", "Physically Grow"],
     ["grow", "physically grow"],
+    ["Force", "Horse"],
+    ["force", "horse"],
     ["Keyboard", "Leopard"],
     ["keyboard", "leopard"],
     ["New Study", "Tumblr Post"],
@@ -139,7 +152,11 @@ if (level >= 4 && wantPolitical){
     ["Sanders", "Zedong"],
     ["Sarah Palin", "Alaskan Redneck Leader"], // ?
     ["Palin", "Alaskan Redneck"],
-    ["John Doe", "Anonymous, Inc"]
+    ["John Doe", "Anonymous, Inc"],
+    ["GOP", "Grumpy Old People"],
+    ["KGB", "Illuminati"],
+    ["Kremlin", "Gremlin"],
+    ["kremlin", "gremlin"]
   )
 }
 if (level >= 2 && wantPolitical){
@@ -171,7 +188,10 @@ if (level >= 2 && wantPolitical){
     ["Gun", "Flamethrower"],
     ["gun", "flamethrower"],
     ["Polls", "Lottery Drawings"],
-    ["polls", "lottery drawings"]
+    ["polls", "lottery drawings"],
+    ["Internet", "Pony Express"],
+    ["internet", "pony express"]
+    
   )
 }
 if (level >= 1 && wantPolitical){
@@ -181,7 +201,9 @@ if (level >= 1 && wantPolitical){
     ["Polarization", "Hippification"],
     ["polarization", "hippification"],
     ["Quantitive Easing", "[some obscure economic concept]"],
-    ["quantitive easing", "[some obscure economic concept]"]
+    ["quantitive easing", "[some obscure economic concept]"],
+    ["Treasury", "Gold Hoard"],
+    ["treasury", "gold hoard"]
   )
 }
 
@@ -198,6 +220,7 @@ if (wantSpace){
     ["Bejing", "ISL"],
     ["UK", "BG5"],
     ["United Kingdom", "Beetlegeuse 5"],
+    ["England", "Beetlegeuse 5"],
     ["Britain", "Beetlegeuse 5"],
     ["britain", "Beetlegeuse 5"],
     ["British", "Beetlegeuse 5"],
@@ -297,6 +320,8 @@ if (wantOther){
   ["dead", "reincarnated early"],
   ["Death", "Ascention to Heaven"],
   ["death", "ascention to heaven"],
+  ["Gold", "Unicorn Blood"],
+  ["gold", "unicorn blood"],
   ["Timeline", "Procrastination Plan"],
   ["timeline", "procrastination plan"],
   ["National Guard", "Rebel"],
@@ -332,8 +357,13 @@ if (wantOther){
   ["Minn.", "Hoth"],
   ["Texas", "Redneckland"],
   ["Iowa", "Middle Earth"],
-  ["Wisconsin", "The Dairy State"],
-  ["Wisc.", "The Dairy State"],
+  ["Wisconsin", "Cheese Central"],
+  ["Wisc.", "Cheese Central"],
+  ["WI", "CC"],
+  ["California", "Hollywoodland"],
+  ["Cal.", "Hollywoodland"],
+  ["CA.", "HW"],
+
   
   //Religious
   ["Evangelical", "Pastafarian"],
@@ -361,7 +391,14 @@ if (wantOther){
   ["juice", "liquid nitrogen"],
   ["Apple", "UNIX"],
   ["Watch", "Holo"],
-  ["watch", "holo"]
+  ["watch", "holo"],
+
+  ["said", "professed"],
+  ["say", "lay claim that"],
+  ["Two", "Fourty-Two"],
+  ["two", "fourty-two"],
+  ["Four", "Fourty-Two"],
+  ["four", "fourty-two"]
 )
 }
 }
