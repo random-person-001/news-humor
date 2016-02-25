@@ -1,0 +1,59 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>News Humor Popup</title>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+        /*width: 100px;*/
+        width: 165px;
+      }
+      #status {
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        min-width: 500px;
+        max-width: 700px;
+        width: 550px;
+      }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    
+  </head>
+  <body>
+    <h4>News Humor Options</h4> 
+    <div><center><input type="range" min="1" max="5" id="extent" name="extent"><span style="position:relative; top:0px;"></span></center>
+    </div><div>
+    <input type="checkbox" id="yes-xkcd" name="yes-xkcd"> <span style="position:relative; top:0px;"> XKCD</span>
+    </div><div>    
+    <input type="checkbox" id="yes-political" name="yes-political"> <span style="position:relative; top:0px;"> Political</span>
+    </div><div>
+    <input type="checkbox" id="yes-space" name="yes-space"> <span style="position:relative; top:0px;"> Space</span>
+    </div><div>
+    <input type="checkbox" id="yes-other" name="yes-other"> <span style="position:relative; top:0px;"> Other</span>
+    </div><div><center>
+    <!--button id="apply" name="apply">Apply</button-->
+  </center></div>
+  This Domain:
+  	<div>
+    <button id="add-this" name="add-this">Add</button>
+    <button id="remove-this" name="remove-this">Remove</button>
+    </div>
+    <script src="popup.js"></script>
+<a href="https://github.com/random-person-001/news-humor">Extension Source</a>
+  </body>
+</html>
+
