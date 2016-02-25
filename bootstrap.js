@@ -5,6 +5,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
     defaults['political'] = true;
     defaults['space'] = true;
     defaults['other'] = true;
+    defaults['grammar'] = false;
     defaults['extent'] = 4;
 
     defaults["changeThisSite"] = false;
