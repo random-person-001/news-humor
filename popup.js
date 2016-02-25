@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var political = document.getElementById('yes-political');
     var space = document.getElementById('yes-space');
     var other = document.getElementById('yes-other');
+    var grammar = document.getElementById('yes-grammar');
     var extent = document.getElementById('extent');
     var addDomain = document.getElementById('add-this');
     var removeDomain = document.getElementById('remove-this');
@@ -13,17 +14,10 @@ document.addEventListener('DOMContentLoaded', function(){
     // set the initial state of the checkboxes
     chrome.storage.sync.get("news_humor_options", function(data){
       xkcd.checked = data["news_humor_options"]['xkcd']
-    });
-    chrome.storage.sync.get("news_humor_options", function(data){
       political.checked = data["news_humor_options"]['political']
-    });
-    chrome.storage.sync.get("news_humor_options", function(data){
       space.checked = data["news_humor_options"]['space']
-    });
-    chrome.storage.sync.get("news_humor_options", function(data){
       other.checked = data["news_humor_options"]['other']
-    });
-    chrome.storage.sync.get("news_humor_options", function(data){
+      grammar.checked = data["news_humor_options"]['grammar']
       extent.value = data["news_humor_options"]['extent']
     });
 
@@ -55,6 +49,12 @@ document.addEventListener('DOMContentLoaded', function(){
     other.addEventListener("change", function(){
         chrome.storage.sync.get("news_humor_options", function(original){
           original['news_humor_options']['other'] = other.checked;
+          chrome.storage.sync.set({news_humor_options : original['news_humor_options']});
+        });
+    });
+    grammar.addEventListener("change", function(){
+        chrome.storage.sync.get("news_humor_options", function(original){
+          original['news_humor_options']['grammar'] = grammar.checked;
           chrome.storage.sync.set({news_humor_options : original['news_humor_options']});
         });
     });
