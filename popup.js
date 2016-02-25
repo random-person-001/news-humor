@@ -1,46 +1,16 @@
 
 document.addEventListener('DOMContentLoaded', function(){
-    console.log("Hi there!")
+    console.log("Hi there! from popup.js")
     var xkcd = document.getElementById('yes-xkcd');
     var political = document.getElementById('yes-political');
     var space = document.getElementById('yes-space');
     var other = document.getElementById('yes-other');
     var extent = document.getElementById('extent');
+    var addDomain = document.getElementById('add-this');
+    var removeDomain = document.getElementById('remove-this');
+    var applybtn = document.getElementById('apply');
 
-    // set the initial state of the checkbox
-/*
-    chrome.storage.sync.get("yes_to_xkcd", function(data){
-      if (data["yes_to_xkcd"]){
-        xkcd.checked = true;
-      } else {
-        xkcd.checked = false;
-      }
-    });
-    chrome.storage.sync.get("yes_to_political", function(data){
-      if (data["yes_to_political"]){
-        political.checked = true;
-      } else {
-        political.checked = false;
-      }
-    });
-    chrome.storage.sync.get("yes_to_space", function(data){
-      if (data["yes_to_space"]){
-        space.checked = true;
-      } else {
-        space.checked = false;
-      }
-    });
-    chrome.storage.sync.get("yes_to_other", function(data){
-      if (data["yes_to_other"]){
-        other.checked = true;
-      } else {
-        other.checked = false;
-      }
-    });
-    chrome.storage.sync.get("yes_to_extent", function(data){
-      extent.value = data["yes_to_extent"]
-    });
-*/
+    // set the initial state of the checkboxes
     chrome.storage.sync.get("news_humor_options", function(data){
       xkcd.checked = data["news_humor_options"]['xkcd']
     });
@@ -58,23 +28,6 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
 
-/*
-    xkcd.addEventListener("change", function(){
-        chrome.storage.sync.set({yes_to_xkcd: xkcd.checked});
-    });
-    political.addEventListener("change", function(){
-        chrome.storage.sync.set({yes_to_political: political.checked});
-    });
-    space.addEventListener("change", function(){
-        chrome.storage.sync.set({yes_to_space: space.checked});
-    });
-    other.addEventListener("change", function(){
-        chrome.storage.sync.set({yes_to_other: other.checked});
-    });
-    extent.addEventListener("change", function(){
-        chrome.storage.sync.set({yes_to_extent: extent.value});
-    });
-*/
     xkcd.addEventListener("change", function(){ 
         chrome.storage.sync.get("news_humor_options", function(original){
           original['news_humor_options']['xkcd'] = xkcd.checked;
@@ -111,7 +64,28 @@ document.addEventListener('DOMContentLoaded', function(){
           chrome.storage.sync.set({news_humor_options : original['news_humor_options']});
         });
     });
+    addDomain.addEventListener("click", function(){
+       // Tell botstrap.js to add this domain to list
+        chrome.runtime.sendMessage({greeting: "Please, could you add this domain?"}, function(response) {
+          console.log(response.farewell);
+        });
+       // chrome.storage.sync.get("news_humor_options", function(original){
+       //   original['news_humor_options']['addThisSite'] = true; // For bootstrap.js to handle
+       //   chrome.storage.sync.set({news_humor_options : original['news_humor_options']});
+       // });
+       //Reload
+    });
+    removeDomain.addEventListener("click", function(){
+       // Tell botstrap.js to add this domain to list
+        chrome.runtime.sendMessage({greeting: "Please, could you remove this domain?"}, function(response) {
+          console.log(response.farewell);
+        });
+    });
 
+//chrome.tabs.executeScript(null, {file: "content_script.js"});
 
+chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+  console.log(response.farewell);
+});
 
 });
