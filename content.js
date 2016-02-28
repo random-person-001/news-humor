@@ -2,25 +2,16 @@
 //alert("Hello from your Chrome extension!")
 
 /*NOTES:
-    > I could have a random thingy
-    ./ just store one chrome.storage array that holds the booleans, rather than seprate ones (probably more proper)
     > Streamline synking settings here -- integrate addData?
-    ./ Maybe optimize replaceAll() (want 's)
-    ./ Slider for intensity of replacements (would probably need another data stored in each sub-array)
+    > Make replaceAll() work on replacements ending with periods
     > ...?
 
-Now Things:
-./ Treasury - Gold Hoard
+     New Things:
 FBI      - 
 Budget   - 
-./ GOP   - Grumpy Old People
-./ Internet - Pony Express
-./ Gold     - Unicorn Blood
-common nouns -> potion ingredients
+common nouns - potion ingredients
 corn     - veggemite
 wheat, etc - soybeans
-./ two, four - 42
-./ kremlin - gremlin
  ?  - sugar cookie
 Rubio > Bro
 Foxconn > Foxes
@@ -28,6 +19,7 @@ Foxconn > Foxes
 Price  > Gouge
 Apple  > Bananna
 Europe > Europa
+VR     > ?
 
 
 THINGS NOT WORKING:
@@ -60,6 +52,7 @@ chrome.storage.sync.get("news_humor_options", function(data){
         console.log("Yay, it's a fun site!")
         populate(data["news_humor_options"])
         reformat()
+        console.log("Finished!")
     }
     else{
         console.log("This site isn't one I should replace")
@@ -159,7 +152,11 @@ if (level >= 4 && wantPolitical){
     ["Bernie Sanders", "Mao Zedong"],  //Batman?
     ["Sanders", "Zedong"],
     ["Sarah Palin", "Alaskan Redneck Leader"], // ?
-    ["Palin", "Alaskan Redneck"],
+    ["Palin", "Alaskan Redneck"]
+  )
+}
+if (level >= 2 && wantPolitical){
+  replacements.push(
     ["John Doe", "Anonymous, Inc"],
     ["GOP", "Grumpy Old People"],
     ["KGB", "Illuminati"],
@@ -167,7 +164,7 @@ if (level >= 4 && wantPolitical){
     ["kremlin", "gremlin"]
   )
 }
-if (level >= 2 && wantPolitical){
+if (level >= 3 && wantPolitical){
   replacements.push(
     ["John Doe", "Anonymous, Inc"],
     ["Boycott", "Donate To"],
@@ -216,14 +213,20 @@ if (level >= 1 && wantPolitical){
 }
 
 
-if (wantSpace){
+if (level >= 1 && wantSpace){
   replacements.push(
     ["Export", "Shipment"],
     ["export", "shipment"],
     ["Navy", "Space Fleet"],
     ["navy", "space fleet"],
     ["Sailor","Interstellar Pilot"],
-    ["sailor","interstellar pilot"],
+    ["sailor","interstellar pilot"]
+  )
+}
+
+
+if (level >= 4 && wantSpace){
+  replacements.push(
 
     ["Bejing", "ISL"],
     ["UK", "BG5"],
@@ -265,8 +268,13 @@ if (wantSpace){
     ["United Nations", "Interplanetary Union"],
     ["UN", "Interplanetary Union"],
     ["Vatican City", "Io"],
-    ["Vatican", "Io"],
+    ["Vatican", "Io"]
+  )
+}
 
+
+if (level >= 3 && wantSpace){
+  replacements.push(
     ["Bus", "Transport Shuttle"],
     ["bus", "transport shuttle"],
     ["Boat", "Spacecraft"],
@@ -277,8 +285,6 @@ if (wantSpace){
     ["copter", "capsule"],
     ["Ferry", "Transport Shuttle"],
     ["ferry", "transport shuttle"],
-    ["Gas", "Hydrogen"],
-    ["gas", "hydrogen"],  
     ["Harbor", "Spaceport"],
     ["harbor", "spaceport"],
     ["Island", "Asteroid"],
@@ -293,8 +299,6 @@ if (wantSpace){
     ["marine", "interstellar"],
     ["Ocean", "Space"],
     ["ocean", "space"],
-    ["Oil", "Liquid Hydrogen"],
-    ["oil", "liquid hydrogen"],
     
     ["Sailed", "Flew"],
     ["sailed", "flew"],
@@ -304,8 +308,24 @@ if (wantSpace){
 }
 
 
+if (level >= 2 && wantSpace){
+  replacements.push(
+    ["Gas", "Hydrogen"],
+    ["gas", "hydrogen"],  
+    ["Crude Oil", "LH"],
+    ["crude oil", "LH"],
+    ["Brent Oil", "Liquid Hydrogen"],
+    ["brent oil", "liquid hydrogen"],
+    ["Oil", "Liquid Hydrogen"],
+    ["oil", "liquid hydrogen"],
+    ["Brent", "H"],
+    ["brent", "H"]
+  )
+}
 
-if (wantOther){
+
+
+if (level >= 2 && wantOther){
   replacements.push(
 //Tech
   ["Windows 10", "Ubuntu 15.4"],
@@ -313,6 +333,26 @@ if (wantOther){
   ["Microsoft", "Developers"],
   ["PC", "Raspberry Pi"],
   ["Minecraft", "GTA 5"],
+  ["Apple", "UNIX"],
+  ["OSX", "DirectX"],
+  ["OS X", "DirectX"],
+  ["iOS", "Solaris"]
+  )
+}
+
+if (level >= 4 && wantOther){
+  replacements.push(
+  ["iPod", "youPod"],
+  ["iPhone", "youPhone"],
+  ["Watch", "Holo"],
+  ["watch", "holo"]
+  )
+}
+
+
+
+if (level >= 4 && wantOther){
+  replacements.push(
 
 //International Affairs
   ["Battle", "Lightsaber® Duel"],
@@ -346,8 +386,12 @@ if (wantOther){
   ["police", "special forces"],
   ["Stock", "Concert Ticket"],
   ["stock", "concert ticket"],
-  ["share", "concert ticket"],
+  ["share", "concert ticket"]
+  )
+}
 
+if (level >= 3 && wantOther){
+  replacements.push(
   //Places
   ["Canada", "Siberia"],
   ["Canadia", "Siberia"],
@@ -372,9 +416,12 @@ if (wantOther){
   ["WI", "CC"],
   ["California", "Hollywoodland"],
   ["Cal.", "Hollywoodland"],
-  ["CA.", "HW"],
+  ["CA.", "HW"]
+  )
+}
 
-  
+if (level >= 4 && wantOther){
+  replacements.push(
   //Religious
   ["Evangelical", "Pastafarian"],
   ["evangelical", "Pastafarian"],
@@ -386,8 +433,12 @@ if (wantOther){
   ["Bible", "Gospel of the Flying Spaghetti Monster"],
   ["Islam", "Atheism"],
   ["Islamic", "Athiest"],
-  ["Muslim", "Athiest"],
+  ["Muslim", "Athiest"]
+  )
+}
 
+if (level >= 2 && wantOther){
+  replacements.push(
   //Other
   ["Chicken", "Dinosaur"],
   ["chicken", "dinosaur"],
@@ -399,14 +450,6 @@ if (wantOther){
   ["milk", "Soylent"],
   ["Juice", "Liquid Nitrogen"],
   ["juice", "liquid nitrogen"],
-  ["Apple", "UNIX"],
-  ["OSX", "DirectX"],
-  ["OS X", "DirectX"],
-  ["iOS", "Solaris"],
-  ["iPod", "youPod"],
-  ["iPhone", "youPhone"],
-  ["Watch", "Holo"],
-  ["watch", "holo"],
 
   ["said", "professed"],
   ["say", "lay claim that"],
@@ -414,13 +457,17 @@ if (wantOther){
   ["two", "fourty-two"],
   ["Four", "Fourty-Two"],
   ["four", "fourty-two"]
-)
+  )
 }
-if (level >= 2 && wantGrammar){
+if (level >= 4 && wantGrammar){
   replacements.push(
     ["or", "xor"],
     ["and", "but not"],
-    ["if", "iff"],
+    ["if", "iff"]
+  )
+}
+if (level >= 2 && wantGrammar){
+  replacements.push(
     ["against", "TEMPYYY"],
     ["for", "against"],
     ["TEMPYYY", "for"],
