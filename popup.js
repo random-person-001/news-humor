@@ -69,14 +69,9 @@ document.addEventListener('DOMContentLoaded', function(){
         chrome.runtime.sendMessage({greeting: "Please, could you add this domain?"}, function(response) {
           console.log(response.farewell);
         });
-       // chrome.storage.sync.get("news_humor_options", function(original){
-       //   original['news_humor_options']['addThisSite'] = true; // For bootstrap.js to handle
-       //   chrome.storage.sync.set({news_humor_options : original['news_humor_options']});
-       // });
-       //Reload
     });
     removeDomain.addEventListener("click", function(){
-       // Tell botstrap.js to add this domain to list
+       // Tell botstrap.js to remove this domain to list
         chrome.runtime.sendMessage({greeting: "Please, could you remove this domain?"}, function(response) {
           console.log(response.farewell);
         });
