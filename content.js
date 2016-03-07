@@ -15,6 +15,8 @@ wheat, etc - soybeans
  ?  - sugar cookie
 Rubio > Bro
 Foxconn > Foxes
+Elected > ?
+Economy > ?
 
 Price  > Gouge
 Apple  > Bananna
@@ -343,6 +345,7 @@ if (level >= 2 && wantOther){
 if (level >= 4 && wantOther){
   replacements.push(
   ["iPod", "youPod"],
+  ["iPad", "youPad"],
   ["iPhone", "youPhone"],
   ["Watch", "Holo"],
   ["watch", "holo"]
@@ -489,24 +492,39 @@ if (level >= 2 && wantGrammar){
 }
 }
 
-
+///  UHHHH -- THIS NEEDS FIXING AND STUFF
 function replaceAll(str, find, replacey) {
   re = new RegExp('(^|.\\b)('+find+')(s?\\b.|$)', 'g')
   return str
    .replace(re,function(all,char1,cat,char2)
-    {
-       //check 1st, capitalize if required
-       var replacement = (cat.charAt(0) === 'C' ? '' : '') + replacey;
+    {//   cat = word to be replaced      replacey = replacement for that
+
+       //check 1st, capitalize if required -- NO LONGER!
+       //var replacement = (cat.charAt(0) === '' ? '' : '') + replacey;
+       var replacement = replacey
+       //console.log(cat)
+       //console.log(replacey)
+       //console.log("")
        if (char1 === ' ' && char2 === 's')
        {//replace plurals, too
            cat = replacement + 's';
-       }if (char1 === ' ' && char2 === ':')
+       }else if (char1 === ' ' && char2 === ':')
        {//replace colons, too
            cat = replacement + ':';
+       }else if (cat.charAt(-1) === '.' || char2 === '.')
+       {//r GRRRRRR!!!!
+           console.log("TNSOPIDTNSPNITTNSPFNSOYITNONTHTN")
+           console.log(cat)
+           cat = replacement + '.';
        }
        else
-       {//do not replace if dashes are matched
+       {
+       //do not replace if dashes are matched
            cat = char1 === '-' || char2 === '-' ? cat : replacement;
+       //do not replace if surrounded by %20
+           cat = char1 === '0' || char2 === '%' ? cat : replacement;
+       //do not replace if surrounded by underscores
+           cat = char1 === '_' || char2 === '_' ? cat : replacement;
        }
        return char1 + cat + char2;//return replacement string
     });
@@ -523,13 +541,14 @@ function reformat (){
       page = replaceAll(page, replacements[i][0], replacements[i][1])
     }
   }
-  catch (e){
+  catch (e){ 
     console.log("Uh-oh, speghetti-o!  Following stuff is: index failure was at, length of list, list, error, protip")
     console.log(i)
     console.log(replacements.length)
     console.log(replacements)
     console.log(e)
-    console.log("Forgetting commas may be the cause of this error.")
+    console.log("Forgetting commas may be the cause of this error.  Now alerting user.")
+    alert("News Humor problem:  There's something wrong in file 'content.js' - probably a missed comma - on replacement #" + String(i) + " of " + String(replacements.length + ".\nI guess you can disable the extension for now by going to 'chrome://extensions' and unchecking News Humor.  \n\nPlease let the developer know at random.person.001@gmail.com.  Sorry!"))
   }
   document.body.innerHTML = page
 }

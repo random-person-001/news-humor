@@ -28,9 +28,6 @@ chrome.runtime.onInstalled.addListener(function(details) {
         "www.time.com",
         "www.sltrib.com",
         "www.scienceworldreport.com",
-        "www.nasa.gov",
-        "www.space.com",
-        "www.spacex.com",
         "www.nasdaq.com",
         "www.sfgate.com",
         "www.nj.com",
@@ -48,7 +45,8 @@ chrome.runtime.onInstalled.addListener(function(details) {
         "www.seattlepi.com",
         "www.csmonitor.com",
         "www.miamiherald.com",
-        "www.latimes.com"
+        "www.latimes.com",
+        "www.bostonherald.com"
     ]
 
     chrome.storage.sync.set({news_humor_options: defaults});
@@ -117,7 +115,7 @@ chrome.runtime.onMessage.addListener(
     }
     if (request.greeting == "Please, could you remove this domain?"){
       console.log("sure thing!")
-      //Actually add it:
+      //Actually remove it:
       url = currentTab
       var firstDot = url.indexOf(".")
       var start = url.lastIndexOf("/", firstDot) + 1
@@ -125,7 +123,7 @@ chrome.runtime.onMessage.addListener(
       if (secondDot === -1){  //Could use a ternary operator, or...
         secondDot = firstDot
       }
-      var end = url.indexOf("/", secondDot) + 1
+      var end = url.indexOf("/", secondDot)
       var domain = url.substring(start, end) //Yay!
       console.log(domain)
       console.log(url)
@@ -133,10 +131,14 @@ chrome.runtime.onMessage.addListener(
       //Good!  Now we have it, and can add it to the list.
       chrome.storage.sync.get("news_humor_options", function(original){
         sites = original['news_humor_options']['sites'];
-        sites.splice(sites.indexOf(domain), 1)
+        sitesIndex = sites.indexOf(domain)
+        if (sitesIndex >= 0){
+            sites.splice(sitesIndex, 1)
+        }
         original['news_humor_options']['sites'] = sites
         chrome.storage.sync.set({news_humor_options : original['news_humor_options']});
-      });
+        });
+        
       
       sendResponse({farewell: "Yes indeed.  The pleasure has been mine in exterminating it."});
     }

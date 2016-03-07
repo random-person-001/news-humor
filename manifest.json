@@ -4,7 +4,7 @@
   "name": "News Humor",
   "short_name": "News Humor",
   "description": "Humorously swap words in the news headlines and stories.",
-  "version": "1.73",
+  "version": "1.75",
 
   "browser_action": {
     "default_icon": "news-icon.png",
