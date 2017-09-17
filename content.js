@@ -24,7 +24,7 @@ Europe > Europa
 VR     > ?
 
 
-THINGS NOT WORKING:
+THINGS  NOT  WORKING:
 Sen. - Knight
 Gov. - Beaurocrat
 E.U. - Terrarian Union
@@ -203,8 +203,8 @@ if (level >= 3 && wantPolitical){
 }
 if (level >= 1 && wantPolitical){
   replacements.push(
-    ["NSA-Controlled Camera", "NSA-Controlled NSA-Controlled Camera"],
-    ["NSA-controlled camera", "NSA-controlled NSA-controlled camera"],
+    ["NSA-Controlled NSA-Controlled Camera", "NSA-Controlled NSA-Controlled NSA-Controlled Camera"],
+    ["NSA-controlled NSA-controlled camera", "NSA-controlled NSA-controlled NSA-controlled camera"],
     ["Hippification", "Hippification"],
     ["hippification", "hippification"],
     ["[some obscure economic concept]", "[some obscure economic concept]"],
