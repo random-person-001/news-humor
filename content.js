@@ -132,7 +132,7 @@ if (level >= 2 && wantXKCD){
 }
 if (wantXKCD){
   replacements.push(
-    ["could not be reached for comment", "is guilty and everyone knows it"]
+    ["is guilty and everyone knows it", "is guilty and everyone knows it"]
   )
 }
 
@@ -203,26 +203,26 @@ if (level >= 3 && wantPolitical){
 }
 if (level >= 1 && wantPolitical){
   replacements.push(
-    ["Camera", "NSA-Controlled Camera"],
-    ["camera", "NSA-controlled camera"],
-    ["Polarization", "Hippification"],
-    ["polarization", "hippification"],
-    ["Quantitive Easing", "[some obscure economic concept]"],
-    ["quantitive easing", "[some obscure economic concept]"],
-    ["Treasury", "Gold Hoard"],
-    ["treasury", "gold hoard"]
+    ["NSA-Controlled Camera", "NSA-Controlled NSA-Controlled Camera"],
+    ["NSA-controlled camera", "NSA-controlled NSA-controlled camera"],
+    ["Hippification", "Hippification"],
+    ["hippification", "hippification"],
+    ["[some obscure economic concept]", "[some obscure economic concept]"],
+    ["[some obscure economic concept]", "[some obscure economic concept]"],
+    ["Gold Hoard", "Gold Hoard"],
+    ["gold hoard", "gold hoard"]
   )
 }
 
 
 if (level >= 1 && wantSpace){
   replacements.push(
-    ["Export", "Shipment"],
-    ["export", "shipment"],
-    ["Navy", "Space Fleet"],
-    ["navy", "space fleet"],
-    ["Sailor","Interstellar Pilot"],
-    ["sailor","interstellar pilot"]
+    ["Shipment", "Shipment"],
+    ["shipment", "shipment"],
+    ["Space Fleet", "Space Fleet"],
+    ["space fleet", "space fleet"],
+    ["Interstellar Pilot","Interstellar Pilot"],
+    ["interstellar pilot","interstellar pilot"]
   )
 }
 
@@ -364,6 +364,9 @@ if (level >= 4 && wantOther){
   ["Shooting", "Party That Went Too Far"],
   ["Hurricane", "Giant Sea Monster"],
   ["hurricane", "giant sea monster"],
+  ["Tropical Storm", "Sea Monster"],
+  ["Tropical storm", "Sea monster"],
+  ["tropical storm", "sea monster"],
   ["Olympics", "KSP Tournament"],
   ["Deaths", "Ascentions to Heaven"],
   ["deaths", "ascentions to heaven"],
